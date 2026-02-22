@@ -4,8 +4,8 @@
  */
 
 import java.util.*;
-public final Map<Integer, String> mapTime = new HashMap<Integer, String>();
-public final String[] intWord = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"};
+public static final Map<Integer, String> mapTime = new HashMap<Integer, String>();
+public static final String[] intWord = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"};
 
 /**Map every int value to the corresponding word
  * @param timeWord - List containing strings corresponding to the relevant int
@@ -35,13 +35,13 @@ public static void main(String[] args){
 	while(true){
 		System.out.println("Enter time or 'quit':\n");
 		String userInput = input.nextLine();
-		
+
 		if (userInput.equals("quit")){
 			break;
 		}
 
-		evaluateTime(userInput.split(":"))
-	
+		evaluateTime(userInput.split(":"));
+
 	}
 
 	System.out.println("Done");
