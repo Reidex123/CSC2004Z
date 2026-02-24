@@ -24,19 +24,56 @@ public static void evaluateTime(String[] time) {
 	int hour = Integer.parseInt(time[0]);
 	int minutes = Integer.parseInt(time[1]);
 
-	String roundMinutes = round(minutes);
+	String roundTime = round(minutes, hour);
+
+	System.out.println(roundTime);
 
 }
 
-private static String round(int minutes) {
+private static String round(int minutes, int hour) {
+	double div = (double) minutes / 5;
+	int result = (int) (5 * (Math.round(div)));
 
-	if (minutes % 5 == 0 || minutes % 5 == minutes) {
-		return "o'clock";
+	if (minutes == 0 || result == 0) {
+		return oClock(hour, minutes);
 	}
+
 	if (minutes < 30) {
-
+		return pastHr(hour, minutes, result);
 	}
-	return null;
+	else if (minutes > 30){
+		return toHr(hour, minutes, result);
+	}
+
+	return halfHr(hour, minutes, result);
+}
+
+private static String oClock(int hour, int minutes) {
+	return (minutes != 0) ? "about" + mapTimeHr.get(hour) + "o'clock" : mapTimeHr.get(hour) + "o'clock";
+}
+
+private static String pastHr(int hour, int minutes, int result) {
+	if (result != minutes) {
+		return "about" + mapTimeMin.get(result) + "past" + mapTimeHr.get(hour);
+	}
+
+	return mapTimeMin.get(result) + "past" + mapTimeHr.get(hour);
+}
+
+private static String toHr(int hour, int minutes, int result) {
+	if ((60 - result != 60 - minutes)) {
+		return "about" + mapTimeMin.get(60 - result) + "to" + mapTimeHr.get(hourRollOver(hour));
+	}
+
+	return mapTimeMin.get(60 - result) + "to" + mapTimeHr.get(hour + 1);
+}
+
+private static int hourRollOver(int hour) {
+	return hour != 12 ? hour + 1 : hour;
+}
+
+private static String halfHr(int hour, int minutes, int result) {
+	return (minutes != result) ? "about half past " + mapTimeHr.get(hour): "half past " + mapTimeHr.get(hour);
 }
 
 /**Main program
@@ -44,20 +81,20 @@ private static String round(int minutes) {
 public static void main(String[] args){
 
 	populateMaps(hours, min);
-	Scanner input = new Scanner(System.in);
 
-	while(true){
-		System.out.println("Enter time or 'quit':\n");
-		String userInput = input.nextLine();
+    try (Scanner input = new Scanner(System.in)) {
+        while(true){
+            System.out.println("Enter time or 'quit':\n");
+            String userInput = input.nextLine();
 
-		if (userInput.equals("quit")){
-			break;
-		}
+            if (userInput.equals("quit")){
+                break;
+            }
 
-		evaluateTime(userInput.split(":"));
+            evaluateTime(userInput.split(":"));
 
-	}
+        }
 
-	System.out.println("Done");
-	input.close();
+        System.out.println("Done");
+    }
 }
