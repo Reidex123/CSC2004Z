@@ -51,23 +51,23 @@ public class converter {
 	}
 
 	private static String oClock(int hour, int minutes) {
-		return (minutes != 0) ? "about" + mapTimeHr.get(hour) + "o'clock" : mapTimeHr.get(hour) + "o'clock";
+		return (minutes != 0) ? "about " + mapTimeHr.get(hour) + " o'clock " : mapTimeHr.get(hour) + " o'clock";
 	}
 
 	private static String pastHr(int hour, int minutes, int result) {
 		if (result != minutes) {
-			return "about" + mapTimeMin.get(result) + "past" + mapTimeHr.get(hour);
+			return "about " + mapTimeMin.get(result) + " past " + mapTimeHr.get(hour);
 		}
 
-		return mapTimeMin.get(result) + "past" + mapTimeHr.get(hour);
+		return mapTimeMin.get(result) + " past " + mapTimeHr.get(hour);
 	}
 
 	private static String toHr(int hour, int minutes, int result) {
 		if ((60 - result != 60 - minutes)) {
-			return "about" + mapTimeMin.get(60 - result) + "to" + mapTimeHr.get(hourRollOver(hour));
+			return "about " + mapTimeMin.get(60 - result) + " to " + mapTimeHr.get(hourRollOver(hour));
 		}
 
-		return mapTimeMin.get(60 - result) + "to" + mapTimeHr.get(hour + 1);
+		return mapTimeMin.get(60 - result) + " to " + mapTimeHr.get(hour + 1);
 	}
 
 	private static int hourRollOver(int hour) {
@@ -86,7 +86,7 @@ public class converter {
 
 		try (Scanner input = new Scanner(System.in)) {
 			while (true) {
-				System.out.println("Enter time or 'quit':\n");
+				System.out.print("Enter time or 'quit':\n");
 				String userInput = input.nextLine();
 
 				if (userInput.equals("quit")) {
