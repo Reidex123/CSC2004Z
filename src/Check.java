@@ -7,9 +7,6 @@ public class Check {
 
 	public static void evaluateCards(ArrayList<String> setCards){
 
-		//String[] set1 = setCards.get(0).split(",");
-		//String[] set2 = setCards.get(1).split(",");
-		//String[] set3 = setCards.get(2).split(",");
 		for (int i = 0; i < setCards.size(); i++){
 			String[] sets_cards = setCards.get(i).split(" ");
 
@@ -18,15 +15,18 @@ public class Check {
 			String[] set3 = sets_cards[2].split(",");
 
 			boolean isValid = isValidSet_Cards(set1, set2, set3);
+
+			System.out.println("Processing: " + setCards.get(i));
+
+			if (isValid){
+				System.out.println("Valid");
+			}
+			else{
+				System.out.println("Invalid");
+			}
 		}
 
-		//boolean isValid = isValidSet_Cards(set1, set2, set3);
-		
-		if (isValid){
-			System.out.println("Valid");
-		}else{
-			System.out.println("Invalid");
-		}
+		System.out.println("Done");
 	}
 
 	private static boolean isValidSet_Cards(String[] set1, String[] set2, String set3){
@@ -46,6 +46,7 @@ public class Check {
 
 	public static void main(String[] args) {
         	try (Scanner input = new Scanner(System.in)) { // avoid memory leaks
+							       //
             		System.out.println("Enter the name of the file: ");
 			String filename = input.nextLine();
 
