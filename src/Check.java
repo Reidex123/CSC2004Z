@@ -7,11 +7,20 @@ public class Check {
 
 	public static void evaluateCards(ArrayList<String> setCards){
 
-		String[] set1 = setCards.get(0).split(",");
-		String[] set2 = setCards.get(1).split(",");
-		String[] set3 = setCards.get(2).split(",");
+		//String[] set1 = setCards.get(0).split(",");
+		//String[] set2 = setCards.get(1).split(",");
+		//String[] set3 = setCards.get(2).split(",");
+		for (int i = 0; i < setCards.size(); i++){
+			String[] sets_cards = setCards.get(i).split(" ");
 
-		boolean isValid = isValidSet_Cards(set1, set2, set3);
+			String[] set1 = sets_cards[0].split(",");
+			String[] set2 = sets_cards[1].split(",");
+			String[] set3 = sets_cards[2].split(",");
+
+			boolean isValid = isValidSet_Cards(set1, set2, set3);
+		}
+
+		//boolean isValid = isValidSet_Cards(set1, set2, set3);
 		
 		if (isValid){
 			System.out.println("Valid");
@@ -31,21 +40,20 @@ public class Check {
 		return true;
 	}
 
-	private static void cards(String[] line){
-		for (int i = 0; i < line.length; i++){
-			setCards.add(line[i])
-		}
+	private static void cards(String line){
+		setCards.add(line);
 	}
 
 	public static void main(String[] args) {
         	try (Scanner input = new Scanner(System.in)) { // avoid memory leaks
-            		String filename = input.nextLine();
+            		System.out.println("Enter the name of the file: ");
+			String filename = input.nextLine();
 
             		try (BufferedReader file = new BufferedReader(new File(filename)){
 		    		String line;
 
 		    		while(line = filename.readLine() != null){
-			    		cards(line.split(" "));
+			    		cards(line);
 				}
 
 				evaluateCards(setCards);
