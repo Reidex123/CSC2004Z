@@ -1,3 +1,8 @@
+/**
+ * @author Koketso
+ * @version 27/02/2026
+ */
+
 import java.io.*;
 import java.util.*;
 
@@ -31,9 +36,15 @@ public class Check {
 
 	private static boolean isValidSet_Cards(String[] set1, String[] set2, String[] set3){
 
-		for (int i = 0; i < 3; i++){
-			if ((set1[i] != set2[i] && set2[i] != set3[i]) && set1[i] != set3[i]){
-			 	return false;
+		for (int i = 0; i < 3; i++) {
+			if (((set1[i].equals(set2[i])) && (set2[i].equals(set3[i]))) && (set1[i].equals(set3[i]))){
+				continue;
+			}
+			if ((!(set1[i].equals(set2[i])) && !(set2[i].equals(set3[i]))) && !(set1[i].equals(set3[i]))) {
+				continue;
+
+			} else {
+				return false;
 			}
 		}
 
