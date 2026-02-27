@@ -29,7 +29,7 @@ public class Check {
 		System.out.println("Done");
 	}
 
-	private static boolean isValidSet_Cards(String[] set1, String[] set2, String set3){
+	private static boolean isValidSet_Cards(String[] set1, String[] set2, String[] set3){
 
 		for (int i = 0; i < 3; i++){
 			if ((set1[i] != set2[i] && set2[i] != set3[i]) && set1[i] != set3[i]){
@@ -47,25 +47,23 @@ public class Check {
 	public static void main(String[] args) {
         	try (Scanner input = new Scanner(System.in)) { // avoid memory leaks
 							       //
-            		System.out.println("Enter the name of the file: ");
-			String filename = input.nextLine();
+            	System.out.println("Enter the name of the file: ");
+				String filename = input.nextLine();
 
-            		try (BufferedReader file = new BufferedReader(new File(filename)){
-		    		String line;
+            	try (BufferedReader file = new BufferedReader(new FileReader(filename))){
+		    		String line = file.readLine();
 
-		    		while(line = filename.readLine() != null){
+		    		while(line != null){
 			    		cards(line);
-				}
 
-				evaluateCards(setCards);
+						line = file.readLine();
+					}
+
+					evaluateCards(setCards);
 		    	}
-                
-           	 } catch (IOException e) {
-            		System.out.println("Couldn't open the file");
-            	}
-
-
-
+				catch(IOException e){
+					System.out.println("Couldn't open the file.");
+				}
+           	 }
         }
-    }
 }
