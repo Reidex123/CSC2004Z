@@ -59,6 +59,7 @@ public class Check {
         	try (Scanner input = new Scanner(System.in)) { // avoid memory leaks
 							       //
             	System.out.println("Enter the name of the file: ");
+            	System.out.println("Enter the name of the cards file: ");
 				String filename = input.nextLine();
 
             	try (BufferedReader file = new BufferedReader(new FileReader(filename))){
