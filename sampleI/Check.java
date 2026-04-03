@@ -9,6 +9,8 @@ public class Check {
             String cardsFile = input.nextLine();
 
             CardsEvaluator cards = new CardsEvaluator(cardsFile);
+
+            cards.process();
         }
     }
 }

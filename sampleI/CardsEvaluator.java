@@ -16,4 +16,22 @@ public class CardsEvaluator {
             System.out.println("Cannot read file!!");
         }
     }
+
+    public void process() {
+
+        for (int i = 0; i < this.cards.size(); i++) {
+            card set1 = new card(this.cards.get(i).split(" ")[0].split(","));
+            card set2 = new card(this.cards.get(i).split(" ")[1].split(","));
+            card set3 = new card(this.cards.get(i).split(" ")[2].split(","));
+
+            System.out.println("Processing: " + this.cards.get(i));
+
+            if (set1.equals(set2, set3)) {
+                System.out.println("Valid");
+            }
+            else {
+                System.out.println("Invalid");
+            }
+        }
+    }
 }
