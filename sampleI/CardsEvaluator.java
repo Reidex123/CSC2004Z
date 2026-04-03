@@ -8,9 +8,11 @@ public class CardsEvaluator {
 
         try (java.io.BufferedReader file = new java.io.BufferedReader(new java.io.FileReader(filename))) {
 
-            while (file.readLine() != null) {
-                this.cards.add(file.readLine());
-                file.readLine();
+            String Line = file.readLine();
+
+            while (Line != null) {
+                this.cards.add(Line);
+                Line = file.readLine();
             }
         } catch (java.io.IOException e) {
             System.out.println("Cannot read file!!");

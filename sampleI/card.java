@@ -25,32 +25,25 @@ public class card {
         return this.pattern;
     }
 
-    // Two cards are distinct if they do not have the same shape or colour or pattern i.e. none of their attributes match.
-    public boolean equals(card other) {
-        return (this.getShape().equals(other.getShape()) && this.getColor().equals(other.getColor()))
+    public boolean equal(card other) {
+        return this.getShape().equals(other.getShape()) && this.getColor().equals(other.getColor())
                 && this.getPattern().equals(other.getPattern());
     }
 
+    // Two cards are distinct if they do not have the same shape or colour or pattern i.e. none of their attributes match.
+    public boolean distinct(card other) {
+        return !this.getShape().equals(other.getShape()) && !this.getColor().equals(other.getColor())
+                && !this.getPattern().equals(other.getPattern());
+    }
+
+    // A set of three cards is valid if it consists of (i) three distinct cards, or (ii) three of the same card.
     public boolean equals(card other1, card other2) {
 
-        boolean threeSameShape = (this.getShape().equals(other1.getShape())
-                && this.getShape().equals(other2.getShape())) && other1.getShape().equals(other2.getShape());
+        boolean identical = this.equal(other1) && this.equal(other2);
 
-        boolean threeSameColor = (this.getColor().equals(other1.getColor())
-                && this.getColor().equals(other2.getColor())) && other1.getColor().equals(other2.getColor());
+        boolean notIdentical = this.distinct(other1) && this.distinct(other2) && other1.distinct(other2);
 
-        boolean threeSamePattern = (this.getPattern().equals(other1.getPattern())
-                && this.getPattern().equals(other2.getPattern())) && other1.getPattern().equals(other2.getPattern());
-
-        if (threeSameShape && !(threeSameColor && threeSamePattern)) {
-            return true;
-        }
-
-        if (threeSameColor && !(threeSameShape && threeSamePattern)) {
-            return true;
-        }
-
-        return threeSamePattern && !(threeSameShape && threeSameColor);
+        return identical || notIdentical;
     }
 
 }
