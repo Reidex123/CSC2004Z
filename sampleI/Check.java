@@ -1,5 +1,5 @@
-package Sample_I;
+package sampleI;
 
 public class Check {
-    
+
 }

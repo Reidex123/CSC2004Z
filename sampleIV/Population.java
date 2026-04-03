@@ -1,5 +1,5 @@
-package Sample_IV;
+package sampleIV;
 
 public class Population {
-    
+
 }

@@ -1,5 +1,5 @@
-package Sample_II;
+package sampleII;
 
 public class Oddities {
-    
+
 }
