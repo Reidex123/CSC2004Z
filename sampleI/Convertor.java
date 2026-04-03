@@ -76,7 +76,7 @@ class TimeEvaluator {
         if (round == 0) {
             secondInstance = "about " + this.rollOver(this.time.getHour()) + " o'clock";
         } else if (round == 30) {
-            secondInstance = "about " + this.quarters.get(round) + " past " + this.rollOver(this.time.getHour());
+            secondInstance = "about " + this.quarters.get(round) + " past " + this.hours[this.time.getHour() - 1];
         }
         else {
             secondInstance = "about " + this.quarters.get(round) + " to " + this.rollOver(this.time.getHour());
