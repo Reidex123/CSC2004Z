@@ -9,14 +9,20 @@ public class Converter {
             String userInput;
             do {
 
-                System.out.println("Enter a time or quit:");
+                System.out.println("Enter a time or 'quit':");
                 userInput = input.nextLine();
 
-                java.time.LocalTime time = java.time.LocalTime.parse(userInput, java.time.format.DateTimeFormatter.ofPattern("HH:mm"));
+                java.time.LocalTime time = java.time.LocalTime.parse(userInput, java.time.format.DateTimeFormatter.ofPattern("H:mm"));
 
-                System.out.println(new TimeEvaluator(time));
+                TimeEvaluator results = new TimeEvaluator(time);
+                System.out.println(results.toString());
 
-            } while (userInput.equalsIgnoreCase("quit"));
+                System.out.println("Enter a time or 'quit':");
+                userInput = input.nextLine();
+
+            } while (!userInput.equalsIgnoreCase("quit"));
+
+            System.out.println("Done");
         }
     }
 }
