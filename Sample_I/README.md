@@ -1,4 +1,5 @@
 Question 1 – Time Converter (Converter.java)
+
 Overview
 Accepts times in [H]H:MM (12-hour) format and outputs the English language description of that time.
 Rules
@@ -8,8 +9,10 @@ Minutes that are not a multiple of 5 are rounded to the nearest 5 and prefixed w
 Special cases: o'clock, quarter past, quarter to, half past.
 
 Usage
+
 javac Converter.java
 java Converter
+
 Sample I/O
 Enter a time or 'quit': 8:00
 eight o'clock
@@ -39,16 +42,20 @@ All three cards are completely distinct (no attribute matches across any two car
 All three cards are identical (every attribute matches across all three cards).
 
 Any other combination is invalid.
+
 Input Format
 A .txt file where each line contains three space-separated card descriptions, each in the format shape,colour,pattern.
+
 Example (cards.txt):
 square,blue,spot circle,red,solid triangle,green,stripe
 square,blue,spot circle,red,solid triangle,green,solid
 square,blue,spot square,blue,spot square,blue,spot
 square,blue,spot square,blue,spot triangle,green,stripe
+
 Usage
 javac Check.java
 java Check
+
 Sample I/O
 Enter the name of the cards file: cards.txt
 Processing: square,blue,spot circle,red,solid triangle,green,stripe
