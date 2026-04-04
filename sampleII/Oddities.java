@@ -12,10 +12,62 @@ public class Oddities {
             Dates dates = new Dates(filename);
 
             for (java.time.LocalDate date : dates.list) {
-                System.out.println(date.toString());
+
+                if (hasAllOddDigits(date)) {
+                    System.out
+                            .println("The date " + date.format(java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy"))
+                                    + " has all odd digits.");
+
+                } else {
+                    java.time.LocalDate nextDate = findNextOddDate(date);
+
+                    long numDays = java.time.temporal.ChronoUnit.DAYS.between(date, nextDate);
+
+                    if (numDays == 1) {
+                        System.out.println("The first date after "
+                                + date.format(java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy"))
+                                + " with all odd digits is "
+                                + nextDate.format(java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy"))
+                                + " which is " + numDays + " day later.");
+
+                    } else {
+                        System.out.println("The first date after "
+                                + date.format(java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy"))
+                                + " with all odd digits is "
+                                + nextDate.format(java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy"))
+                                + " which is " + numDays + " days later.");
+                    }
+                }
             }
 
+            System.out.println("Done");
+
         }
+    }
+
+    private static boolean hasAllOddDigits(java.time.LocalDate date) {
+        char[] arr = date.format(java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy")).replace("/", "")
+                .toCharArray();
+
+        for (char c : arr) {
+            int digit = Character.getNumericValue(c);
+
+            if (digit % 2 == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private static java.time.LocalDate findNextOddDate(java.time.LocalDate date) {
+        java.time.LocalDate next = date.plusDays(1);
+
+        while (!hasAllOddDigits(next)) {
+            next = next.plusDays(1);
+        }
+
+        return next;
     }
 }
 
@@ -41,8 +93,7 @@ class Dates {
 
                 line = file.readLine();
             }
-        }
-        catch (java.io.IOException e) {
+        } catch (java.io.IOException e) {
             System.out.println("File not found!!");
         }
     }
