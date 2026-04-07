@@ -12,35 +12,35 @@ public class Order {
             Read wordLists = new Read(filename);
 
             for (String line : wordLists.list) {
-            	
-		java.util.List<String> subWords = new java.util.ArrayList<>();
-	    	java.util.List<String> counts = new java.util.ArrayList<>();
 
-		for (String word: line.split(" ")){
-			if (subWords.isEmpty()){
-				subWords.add(word);
-			}
-			else{
-				if (subWords.get(subWords.size() - 1).compareTo(word) < 0){
-					subWords.add(word);
-				}else {
-					counts.add(subWords.size());
-					subWords.clear();
-					subWords.add(word);
-				}
-			}
-		}
+                java.util.List<String> subWords = new java.util.ArrayList<>();
+                java.util.List<Integer> counts = new java.util.ArrayList<>();
 
-		if (!subWords.isEmpty()){
-			counts.add(subWords.size());
-		}
+                for (String word : line.split(" ")) {
+                    if (subWords.isEmpty()) {
+                        subWords.add(word);
+                    } else {
+                        if (subWords.get(subWords.size() - 1).compareTo(word) < 0) {
+                            subWords.add(word);
+                        } else {
+                            counts.add(subWords.size());
+                            subWords.clear();
+                            subWords.add(word);
+                        }
+                    }
+                }
 
-		if (count.size() > 1){
-			System.out.println("Multiple solutions length " + counts.size());
-		} else {
-			System.out.println("Longest is " + counts.size());
-		}
+                if (!subWords.isEmpty()) {
+                    counts.add(subWords.size());
+                }
+
+                if (counts.size() > 1) {
+                    System.out.println("Multiple solutions length " + counts.size() + ".");
+                } else {
+                    System.out.println("Longest is " + counts.get(0) + ".");
+                }
             }
+            System.out.println("Done");
         }
     }
 
