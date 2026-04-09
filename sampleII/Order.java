@@ -1,4 +1,4 @@
-package sampleII;
+//package sampleII;
 
 public class Order {
 
@@ -17,12 +17,16 @@ public class Order {
                 java.util.List<Integer> counts = new java.util.ArrayList<>();
 
                 for (String word : line.split(" ")) {
+                
                     if (subWords.isEmpty()) {
                         subWords.add(word);
-                    } else {
+                    } 
+                    else {
+                    
                         if (subWords.get(subWords.size() - 1).compareTo(word) < 0) {
                             subWords.add(word);
-                        } else {
+                        } 
+                        else {
                             counts.add(subWords.size());
                             subWords.clear();
                             subWords.add(word);
@@ -34,10 +38,12 @@ public class Order {
                     counts.add(subWords.size());
                 }
 
-                if (counts.size() > 1) {
-                    System.out.println("Multiple solutions length " + counts.size() + ".");
+                int length = java.util.Collections.max(counts);
+                
+                if (java.util.Collections.frequency(counts, length) > 1) {
+                    System.out.println("Multiple solutions length " + length + ".");
                 } else {
-                    System.out.println("Longest is " + counts.get(0) + ".");
+                    System.out.println("Longest is " + length + ".");
                 }
             }
             System.out.println("Done");
