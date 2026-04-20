@@ -15,9 +15,14 @@ public class Ships {
                 String[] s1 = data.getPairsOfLine().get(i).split(" ");
                 String[] s2 = data.getPairsOfLine().get(i + 1).split(" ");
 
-                
+                String distS1 = evaluate(s1);
+                String distS2 = evaluate(s2);
             }
         }
+    }
+
+    private static String evaluate(String[] s) {
+        return null;
     }
 
 }
