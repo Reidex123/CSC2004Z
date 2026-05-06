@@ -14,9 +14,46 @@ public class BucketList {
             System.out.println("Enter a comma-separated list of words:");
             String[] words = input.nextLine().split(", ");
 
-            for (String category : storedCategories.getCateg()) {
-
+            java.util.LinkedHashMap<String, java.util.List<String>> buckets = new java.util.LinkedHashMap<>();
+            for (String cat : storedCategories.getCateg()) {
+                buckets.put(cat, new java.util.ArrayList<>());
             }
+
+            java.util.List<String> uncategorised = new java.util.ArrayList<>();
+
+            for (String word : words) {
+                String bestMatch = null;
+
+                for (String category : storedCategories.getCateg()) {
+                    if (word.startsWith(category)) {
+                        if (bestMatch == null || bestMatch.length() < category.length()) {
+                            bestMatch = category;
+                        }
+                    }
+                }
+
+                if (bestMatch != null) {
+                    buckets.get(bestMatch).add(word);
+                } else {
+                    uncategorised.add(word);
+                }
+            }
+
+            System.out.println("Categorised:");
+            for (java.util.Map.Entry<String, java.util.List<String>> entry : buckets.entrySet()) {
+                if (!entry.getValue().isEmpty()) {
+                    java.util.List<String> value = entry.getValue();
+                    System.out.println(entry.getKey() + ": " + String.join(", ", (value.toString().replace("[", "")).replace("]", "") + "."));
+                }
+            }
+
+            if (!uncategorised.isEmpty()) {
+                System.out.println("Uncategorised:");
+                System.out.println(String.join(", ", uncategorised) + ".");
+            }
+
+            System.out.println("Done");
+
         }
     }
 
