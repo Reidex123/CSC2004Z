@@ -44,6 +44,8 @@ public class BucketList {
                 if (!entry.getValue().isEmpty()) {
                     java.util.List<String> value = entry.getValue();
                     System.out.println(entry.getKey() + ": " + String.join(", ", (value.toString().replace("[", "")).replace("]", "") + "."));
+                } else {
+                    System.out.println(entry.getKey() + ": ");
                 }
             }
 
